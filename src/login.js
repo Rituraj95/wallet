@@ -6,7 +6,6 @@ const LoginPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  // Fetch users on component load
   useEffect(() => {
     fetch('https://dummyjson.com/users')
       .then((response) => response.json())
@@ -14,7 +13,7 @@ const LoginPage = ({ onLogin }) => {
       .catch((error) => console.error('Error fetching users:', error));
   }, []);
 
-  // Handle login submission
+
   const handleLogin = (e) => {
     e.preventDefault();
     const user = users.find(
@@ -23,7 +22,7 @@ const LoginPage = ({ onLogin }) => {
 
     if (user) {
       setMessage('');
-      onLogin(user); // Call the onLogin function passed from App to set logged-in user
+      onLogin(user); 
     } else {
       setMessage('Invalid username or password.');
     }
@@ -40,6 +39,7 @@ const LoginPage = ({ onLogin }) => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              placeholder='ex: emilys   taken from json file'
               style={{ width: '100%', padding: '8px', marginTop: '5px' }}
             />
           </label>
@@ -51,6 +51,7 @@ const LoginPage = ({ onLogin }) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+               placeholder='ex: emilyspass'
               style={{ width: '100%', padding: '8px', marginTop: '5px' }}
             />
           </label>
